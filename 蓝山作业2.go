@@ -21,8 +21,8 @@ func Div(a, b int) int {
 func main() {
 	var a, b int
 	var c string
-	fmt.Print("请输入两个数和运算符(+ - * /)(中间用空格隔开)；")
-	fmt.Scanf("%d %d %s", &a, &b, &c)
+	fmt.Print("请输入两个数和运算符(eg:65 + 94)；")
+	fmt.Scanf("%d %s %d", &a, &c, &b)
 	switch c {
 	case "+":
 		fmt.Printf("%d + %d = %d\n", a, b, Calculator(a, b, Add))
