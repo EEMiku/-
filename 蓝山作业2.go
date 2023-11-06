@@ -2,8 +2,9 @@ package main
 
 import "fmt"
 
-type Operation func(int, int) int
-
+func Calculator(num1 int, num2 int, CMD func(int, int) int) int {
+	return CMD(num1, num2)
+}
 func Add(a, b int) int {
 	return a + b
 }
@@ -16,15 +17,20 @@ func Mul(a, b int) int {
 func Div(a, b int) int {
 	return a / b
 }
-func Calculator(a, b int, op Operation) int {
-	return op(a, b)
-}
+
 func main() {
 	var a, b int
-	fmt.Print("请输入两个数(中间用空格隔开)；")
-	fmt.Scanf("%d %d", &a, &b)
-	fmt.Printf("%d + %d = %d\n", a, b, Calculator(a, b, Add))
-	fmt.Printf("%d - %d = %d\n", a, b, Calculator(a, b, Sub))
-	fmt.Printf("%d * %d = %d\n", a, b, Calculator(a, b, Mul))
-	fmt.Printf("%d / %d = %d\n", a, b, Calculator(a, b, Div))
+	var c string
+	fmt.Print("请输入两个数和运算符(+ - * /)(中间用空格隔开)；")
+	fmt.Scanf("%d %d %s", &a, &b, &c)
+	switch c {
+	case "+":
+		fmt.Printf("%d + %d = %d\n", a, b, Calculator(a, b, Add))
+	case "-":
+		fmt.Printf("%d - %d = %d\n", a, b, Calculator(a, b, Sub))
+	case "*":
+		fmt.Printf("%d * %d = %d\n", a, b, Calculator(a, b, Mul))
+	case "/":
+		fmt.Printf("%d / %d = %d\n", a, b, Calculator(a, b, Div))
+	}
 }
